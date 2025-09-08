@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Click Game</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 50px;
+    background: #f4f4f9;
+  }
+  h1 { color: #333; }
+  button {
+    padding: 10px 20px;
+    font-size: 18px;
+    margin: 5px;
+    cursor: pointer;
+  }
+  #players { margin-top: 20px; }
+</style>
+</head>
+<body>
+
+<h1>Click Game</h1>
+<p id="score">Score: 0</p>
+<button id="clickBtn">Click Me!</button>
+<br>
+<button id="saveBtn">Save Progress</button>
+<button id="loadBtn">Load Progress</button>
+
+<h3>Players on Server:</h3>
+<ul id="players"></ul>
+
+<script>
+let score = 0;
+const scoreDisplay = document.getElementById("score");
+const clickBtn = document.getElementById("clickBtn");
+const saveBtn = document.getElementById("saveBtn");
+const loadBtn = document.getElementById("loadBtn");
+const playersList = document.getElementById("players");
+
+// Clicking increases score
+clickBtn.addEventListener("click", () => {
+  score++;
+  scoreDisplay.textContent = `Score: ${score}`;
+});
+
+// Placeholder for save/load (backend later)
+saveBtn.addEventListener("click", () => {
+  alert("This will send your score to the server!");
+});
+
+loadBtn.addEventListener("click", () => {
+  alert("This will load your score from the server!");
+});
+
+// Placeholder for multiplayer players
+let dummyPlayers = ["Player1", "Player2"];
+function updatePlayers() {
+  playersList.innerHTML = "";
+  dummyPlayers.forEach(p => {
+    const li = document.createElement("li");
+    li.textContent = p;
+    playersList.appendChild(li);
+  });
+}
+updatePlayers();
+</script>
+
+</body>
+</html>
