@@ -3,6 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Click Game</title>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-H2TS3B0NRW"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-H2TS3B0NRW');
+</script>
+
 <style>
   body {
     font-family: Arial, sans-serif;
@@ -11,11 +20,10 @@
     background: #f4f4f9;
   }
   h1 { color: #333; }
-  button {
-    padding: 10px 20px;
-    font-size: 18px;
+  input, button {
+    padding: 10px;
+    font-size: 16px;
     margin: 5px;
-    cursor: pointer;
   }
   #players { margin-top: 20px; }
 </style>
@@ -23,49 +31,99 @@
 <body>
 
 <h1>Click Game</h1>
-<p id="score">Score: 0</p>
-<button id="clickBtn">Click Me!</button>
-<br>
-<button id="saveBtn">Save Progress</button>
-<button id="loadBtn">Load Progress</button>
 
-<h3>Players on Server:</h3>
-<ul id="players"></ul>
+<!-- Account forms -->
+<div id="accountDiv">
+  <h3>Sign Up</h3>
+  <input type="text" id="signupUsername" placeholder="Username">
+  <input type="password" id="signupPassword" placeholder="Password">
+  <button id="signupBtn">Sign Up</button>
+  <h3>Login</h3>
+  <input type="text" id="loginUsername" placeholder="Username">
+  <input type="password" id="loginPassword" placeholder="Password">
+  <button id="loginBtn">Login</button>
+</div>
+
+<!-- Game section -->
+<div id="gameDiv" style="display:none;">
+  <p id="score">Score: 0</p>
+  <button id="clickBtn">Click Me!</button>
+  <br>
+  <button id="saveBtn">Save Progress</button>
+  <button id="loadBtn">Load Progress</button>
+
+  <h3>Players on Server:</h3>
+  <ul id="players"></ul>
+</div>
 
 <script>
-let score = 0;
+// Store users temporarily in memory (frontend only for testing)
+let users = {}; // {username: {password: "pass", score: 0}}
+let currentUser = null;
+
+const accountDiv = document.getElementById("accountDiv");
+const gameDiv = document.getElementById("gameDiv");
 const scoreDisplay = document.getElementById("score");
 const clickBtn = document.getElementById("clickBtn");
 const saveBtn = document.getElementById("saveBtn");
 const loadBtn = document.getElementById("loadBtn");
 const playersList = document.getElementById("players");
 
+// Sign Up
+document.getElementById("signupBtn").addEventListener("click", () => {
+  const username = document.getElementById("signupUsername").value.trim();
+  const password = document.getElementById("signupPassword").value;
+  if(!username || !password) return alert("Enter username and password!");
+  if(users[username]) return alert("Username already taken!");
+  users[username] = { password: password, score: 0 };
+  alert("Account created! You can now login.");
+});
+
+// Login
+document.getElementById("loginBtn").addEventListener("click", () => {
+  const username = document.getElementById("loginUsername").value.trim();
+  const password = document.getElementById("loginPassword").value;
+  if(!users[username]) return alert("Username not found!");
+  if(users[username].password !== password) return alert("Wrong password!");
+  currentUser = username;
+  accountDiv.style.display = "none";
+  gameDiv.style.display = "block";
+  score = users[username].score;
+  scoreDisplay.textContent = `Score: ${score}`;
+  updatePlayers();
+});
+
 // Clicking increases score
+let score = 0;
 clickBtn.addEventListener("click", () => {
   score++;
   scoreDisplay.textContent = `Score: ${score}`;
 });
 
-// Placeholder for save/load (backend later)
+// Save/Load (frontend only for testing)
 saveBtn.addEventListener("click", () => {
-  alert("This will send your score to the server!");
+  if(currentUser) {
+    users[currentUser].score = score;
+    alert("Progress saved!");
+  }
 });
-
 loadBtn.addEventListener("click", () => {
-  alert("This will load your score from the server!");
+  if(currentUser) {
+    score = users[currentUser].score;
+    scoreDisplay.textContent = `Score: ${score}`;
+    alert("Progress loaded!");
+  }
 });
 
 // Placeholder for multiplayer players
-let dummyPlayers = ["Player1", "Player2"];
 function updatePlayers() {
   playersList.innerHTML = "";
-  dummyPlayers.forEach(p => {
+  for(let u in users){
     const li = document.createElement("li");
-    li.textContent = p;
+    li.textContent = u;
     playersList.appendChild(li);
-  });
+  }
 }
-updatePlayers();
 </script>
 
 </body>
