@@ -1,32 +1,34 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
   <head>
-    <title>Are You The Chosen One?</title>
+  <title>
+    Are You The Chosen One?
+  </title>
   </head>
   <body>
-    <h1>Only The Chosen One Can Get Gold You Have 3 Lives To Prove Is You</h1>
-
-    <button onclick="chance(), Life(), luck()">Chess one</button>
-    <button onclick="chance(), Life()">Chess two</button>
-    <button onclick="chance(), Life()">Chess three</button>
-    <button onclick="chance(), Life(), luck()">Chess four</button>
+    <h1> Only The Chosen One Can Get Gold You Have 3 Lives To Prove Is You</h1>
+    <button onclick="chance(),Life(),luck()"> Chess one </button>
+      <button onclick="chance(),Life()"> Chess two </button>
+      <button onclick="chance(),Life()"> Chess three </button>
+    <button onclick="chance(),Life(),luck()">Chess four </button>
     <script>
-      let Lives = 3;
-      let r = Math.random();
-      let result = '';
-      function chance() {
-        r < 3/4 ? result = 'You Are The Chosen One' : result = 'You Are Not The Chosen One';
-        alert(result);
-      }
-      function Life() {
-        Lives--;
-        Lives === 0
-          ? alert('You Have Dead And Can No Longer Play')
-          : alert(Lives);
-      }
-      function luck() {
-        r = Math.random(); // only changes when lucky button clicked
-      }
+     let Lives = 3
+     let r = Math.random()
+   let  result = ''
+     function  chance() {
+      r < 3/4? result = 'You Are The Chosen One':        
+      result = 'You Are Not The Chosen On'
+      alert(`${result}`)
+     }
+     function Life()  {
+    Lives-- 
+    Lives === 0?
+     alert('You Have Dead And Can No Longer Play'):
+     alert(`${Lives}`)
+    }
+     function luck()  {
+      r = Math.random() 
+     }
     </script>
   </body>
 </html>
