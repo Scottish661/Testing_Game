@@ -1,7 +1,7 @@
  <!DOCTYPE html>
 <html>
   <head>
-  <title> Are You The Chosen One? </title>
+  <title> can you pull a golden ticket?</title>
    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q54QNH51GX"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -11,18 +11,18 @@
 </script>
   </head>
   <body>
-    <h1> Only The Chosen One Can Get Gold You Have 3 Lives To Prove Is You</h1>
+    <h1> can you get a Golden Ticket? 3 Lives To Prove You can</h1>
     <button onclick="chance(),Life(),luck()"> Chess one </button>
       <button onclick="chance(),Life()"> Chess two </button>
       <button onclick="chance(),Life()"> Chess three </button>
-    <button onclick="chance(),Life(),luck()">Chess four </button>
+    <button onclick="chance(),Life()">Chess four </button>
     <script>
      let Lives = 3
      let r = Math.random()
    let  result = ''
      function  chance() {
-      r < 3/4? result = 'You Are The Chosen One':        
-      result = 'You Are Not The Chosen On'
+      r < 3/4? result = 'you did not pull Golden ticket':        
+      result = 'you pulled a Golden ticket'
       alert(`${result}`)
      }
      function Life()  {
@@ -32,9 +32,10 @@
      alert(`${Lives}`)
     }
      function luck()  {
-      r = Math.random() // I added this so that they would be a 50/50 chance that the button dosent change r // 
+      r = Math.random()
      }
     </script>
   </body>
 </html>
+
 
