@@ -9,31 +9,21 @@
   gtag('js', new Date());
   gtag('config', 'G-Q54QNH51GX');
 </script>
+<style>
+#canvas{
+border: 1px solid black;
+}
+</style>
   </head>
   <body>
-    <h1> can you get a Golden Ticket? 3 Lives To Prove You can</h1>
-    <button onclick="chance(),Life(),luck()"> Chess one </button>
-      <button onclick="chance(),Life()"> Chess two </button>
-      <button onclick="chance(),Life()"> Chess three </button>
-    <button onclick="chance(),Life()">Chess four </button>
+    <canvas id="canvas"> <canvas>
     <script>
-     let Lives = 3
-     let r = Math.random()
-   let  result = ''
-     function  chance() {
-      r < 3/4? result = 'you did not pull Golden ticket':        
-      result = 'you pulled a Golden ticket'
-      alert(`${result}`)
-     }
-     function Life()  {
-    Lives-- 
-    Lives === 0?
-     alert('You Have Dead And Can No Longer Play'):
-     alert(`${Lives}`)
-    }
-     function luck()  {
-      r = Math.random()
-     }
+  let canvad = document.getElementById('canvas');
+  let pen = canvas.getContext('2d');
+  const CS = 512;
+  canvas.height =CS;
+  canvas.width = CS;
+  
     </script>
   </body>
 </html>
